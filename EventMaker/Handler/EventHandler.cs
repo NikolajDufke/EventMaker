@@ -12,7 +12,7 @@ namespace EventMaker.Handler
     public class EventHandler
     {
         private EventViewModel _evm;
-        private EventViewModel hej;
+      
         public EventHandler(EventViewModel evm)
         {
             _evm = evm;
