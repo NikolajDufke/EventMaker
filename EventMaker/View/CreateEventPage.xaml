@@ -1,0 +1,56 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EventMaker.View"
+    xmlns:viewmodel="using:EventMaker.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="EventMaker.View.CreateEventPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewmodel:EventViewModel/>
+    </Page.DataContext>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1">
+            <TextBlock MinHeight="32" Text="Id"/>
+            <TextBlock MinHeight="32" Text="Name"/>
+            <TextBlock MinHeight="32" Text="Description"/>
+            <TextBlock MinHeight="32"  Text="Place"/>
+            <TextBlock MinHeight="32"  Text="Date"/>
+            <TextBlock MinHeight="32"  Text="Time"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1">
+            <TextBox Text="{Binding Id, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Description, Mode=TwoWay}"/>
+            <TextBox Text="{Binding Place, Mode=TwoWay}"/>
+            <CalendarDatePicker Date="{Binding Date, Mode=TwoWay}"/>
+            <TimePicker Time="{Binding Time, Mode=TwoWay}" ClockIdentifier="24HourClock"/>
+        </StackPanel>
+        <AppBarButton  HorizontalAlignment="Left" Icon="Back" Label="Return" Margin="10,10,0,0" VerticalAlignment="Top">
+            <Custom:Interaction.Behaviors>
+                <Custom1:EventTriggerBehavior EventName="Click">
+                    <Custom1:NavigateToPageAction TargetPage="EventMaker.View.EventPage"/>
+                </Custom1:EventTriggerBehavior>
+            </Custom:Interaction.Behaviors>
+        </AppBarButton>
+        <AppBarButton Command="{Binding CreateEventCommand}" Grid.Column="1" HorizontalAlignment="Left" Icon="Add" Label="Add" Margin="174,209,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <AppBarButton Command="{Binding SaveEventCommand}" Grid.Column="1" HorizontalAlignment="Left" Icon="Save" Label="Save" Margin="174,270,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+    </Grid>
+</Page>
